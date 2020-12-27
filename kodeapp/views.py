@@ -44,7 +44,6 @@ class FeedbackView(APIView):
 
         return Response({'feedback': serializer.data})
 
-
     def post(self, request):
         feedback = request.data.get('feedback')
         serializer = FeedbackSerializer(data=feedback)
@@ -57,6 +56,7 @@ class FeedbackView(APIView):
 class FeedbackByIDView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
     def put(self, request, pk):
         feedback = get_object_or_404(Feedback.objects.all(), pk=pk)
         data = request.data.get('feedback')
